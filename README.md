@@ -33,4 +33,4 @@ main() async {
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: https://github.com/thingsboard/dart_thingsboard_client/issues
+[tracker]: https://github.com/mohamedwalaaeldeenonsor/dart_thingsboard_client/issues

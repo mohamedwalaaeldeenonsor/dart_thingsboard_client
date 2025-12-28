@@ -3,7 +3,7 @@ description: Dart implementation of ThingsBoard API client. Provides model objec
 version: 4.0.0
 homepage: https://thingsboard.io
 repository: https://github.com/mohamedwalaaeldeenonsor/dart_thingsboard_client.git
-issue_tracker: https://github.com/thingsboard/dart_thingsboard_client/issues
+issue_tracker: https://github.com/mohamedwalaaeldeenonsor/dart_thingsboard_client/issues
 
 environment:
   sdk: '>=3.2.0 <4.0.0'

@@ -132,6 +132,22 @@ class DeviceService {
     return _tbClient.compute(parseDeviceInfoPageData, response.data!);
   }
 
+    Future<PageData<DeviceInfo>> getTenantGateways(PageLink pageLink,
+      {String type = '',
+      String deviceProfileId = '',
+      bool gatewayOnly = true,
+      RequestConfig? requestConfig}) async {
+    var queryParams = pageLink.toQueryParameters();
+    queryParams['type'] = type;
+    queryParams['deviceProfileId'] = deviceProfileId;
+    queryParams['gatewayOnly'] = gatewayOnly;
+    var response = await _tbClient.get<Map<String, dynamic>>(
+        '/api/entity/tenant/deviceInfos',
+        queryParameters: queryParams,
+        options: defaultHttpOptionsFromConfig(requestConfig));
+    return _tbClient.compute(parseDeviceInfoPageData, response.data!);
+  }
+
   Future<Device?> getTenantDevice(String deviceName,
       {RequestConfig? requestConfig}) async {
     return nullIfNotFound(
