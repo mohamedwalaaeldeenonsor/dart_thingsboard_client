@@ -145,6 +145,8 @@ class DeviceService {
         '/api/entity/tenant/deviceInfos',
         queryParameters: queryParams,
         options: defaultHttpOptionsFromConfig(requestConfig));
+        print("Query Parameters : $queryParams");
+        print("Response : ${response.data??response.statusCode}");
     return _tbClient.compute(parseDeviceInfoPageData, response.data!);
   }
 
