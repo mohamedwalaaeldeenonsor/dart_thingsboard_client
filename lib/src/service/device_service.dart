@@ -137,7 +137,7 @@ class DeviceService {
       String deviceProfileId = '',
       bool gatewayOnly = true,
       RequestConfig? requestConfig}) async {
-    var queryParams = pageLink.toQueryParameters();
+    try{var queryParams = pageLink.toQueryParameters();
     queryParams['type'] = type;
     queryParams['deviceProfileId'] = deviceProfileId;
     queryParams['gatewayOnly'] = gatewayOnly;
@@ -147,7 +147,9 @@ class DeviceService {
         options: defaultHttpOptionsFromConfig(requestConfig));
         print("Query Parameters : $queryParams");
         print("Response : ${response.data??response.statusCode}");
-    return _tbClient.compute(parseDeviceInfoPageData, response.data!);
+    return _tbClient.compute(parseDeviceInfoPageData, response.data!);}catch(e){
+      rethrow;
+    }
   }
 
   Future<Device?> getTenantDevice(String deviceName,

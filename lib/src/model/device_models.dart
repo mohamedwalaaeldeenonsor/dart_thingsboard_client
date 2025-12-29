@@ -797,7 +797,7 @@ class Device extends AdditionalInfoBased<DeviceId>
   DeviceProfileId? deviceProfileId;
   OtaPackageId? firmwareId;
   OtaPackageId? softwareId;
-  DeviceData deviceData;
+  DeviceData? deviceData;
   DeviceId? externalId;
 
   Device(this.name, this.type) : deviceData = DeviceData();
@@ -817,7 +817,7 @@ class Device extends AdditionalInfoBased<DeviceId>
         softwareId = json['softwareId'] != null
             ? OtaPackageId.fromJson(json['softwareId'])
             : null,
-        deviceData = DeviceData.fromJson(json['deviceData']),
+        deviceData =json['deviceData']!=null? DeviceData.fromJson(json['deviceData']):null,
         externalId = json['externalId'] != null
             ? DeviceId.fromJson(json['externalId'])
             : null,
@@ -846,7 +846,10 @@ class Device extends AdditionalInfoBased<DeviceId>
     if (softwareId != null) {
       json['softwareId'] = softwareId!.toJson();
     }
-    json['deviceData'] = deviceData.toJson();
+    if (deviceData != null) {
+      json['deviceData'] = deviceData!.toJson();
+    }
+  
     if (externalId != null) {
       json['externalId'] = externalId!.toJson();
     }
