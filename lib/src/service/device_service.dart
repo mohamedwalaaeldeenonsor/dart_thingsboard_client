@@ -141,6 +141,9 @@ class DeviceService {
     queryParams['type'] = type;
     queryParams['deviceProfileId'] = deviceProfileId;
     queryParams['gatewayOnly'] = gatewayOnly;
+    if (pageLink.textSearch != null) {
+    queryParams['textSearch'] = pageLink.textSearch;
+    }
     var response = await _tbClient.get<Map<String, dynamic>>(
         '/api/entity/tenant/deviceInfos',
         queryParameters: queryParams,
