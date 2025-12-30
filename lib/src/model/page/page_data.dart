@@ -8,7 +8,7 @@ class PageData<T> {
   int? inactiveCount;
   bool hasNext;
 
-  PageData(this.data,this.activeCount,this.inactiveCount, this.totalPages, this.totalElements, this.hasNext);
+  PageData(this.data, this.totalPages, this.totalElements, this.hasNext);
 
   PageData.fromJson(Map<String, dynamic> json, FromJsonFunction<T> fromJson)
       : data = dataFromJson(json['data'], fromJson),
@@ -35,7 +35,7 @@ class PageData<T> {
   }
 }
 
-PageData<T> emptyPageData<T>() => PageData<T>([],0,0, 0, 0, false);
+PageData<T> emptyPageData<T>() => PageData<T>([], 0, 0, false);
 
 List<T> dataFromJson<T>(List<dynamic> jsonData, FromJsonFunction<T> fromJson) {
   return jsonData.map((e) => fromJson(e)).toList();
