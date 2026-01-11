@@ -96,13 +96,16 @@ class DeviceProfileService {
 
   Future<PageData<DeviceProfileInfo>> getDeviceProfileInfos(PageLink pageLink,
       {DeviceTransportType? transportType,
-      RequestConfig? requestConfig}) async {
+      RequestConfig? requestConfig, String? excludeProfileNames }) async {
     var queryParams = pageLink.toQueryParameters();
     if (transportType != null) {
       queryParams['transportType'] = transportType.toShortString();
     }
+    if (excludeProfileNames != null) {
+      queryParams['excludeProfileNames'] = excludeProfileNames;
+    }
     var response = await _tbClient.get<Map<String, dynamic>>(
-        '/api/deviceProfileInfos',
+        '/api/entity/deviceProfileInfos',
         queryParameters: queryParams,
         options: defaultHttpOptionsFromConfig(requestConfig));
     return _tbClient.compute(parseDeviceProfileInfoPageData, response.data!);
