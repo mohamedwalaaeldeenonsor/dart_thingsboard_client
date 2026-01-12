@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import '../thingsboard_client_base.dart';
 import '../http/http_utils.dart';
@@ -125,10 +126,11 @@ class DeviceService {
       RequestConfig? requestConfig}) async {
     var queryParams = pageLink.toQueryParameters();
     queryParams['type'] = type;
-    queryParams['deviceProfileId'] = deviceProfileId;
+
     if (excludeProfileNames != null) {
       queryParams['excludeProfileNames'] = excludeProfileNames;
     }
+    log("Query Params from Package ${queryParams.toString()}");
     var response = await _tbClient.get<Map<String, dynamic>>(
         '/api/entity/tenant/deviceInfos',
         queryParameters: queryParams,
@@ -136,25 +138,27 @@ class DeviceService {
     return _tbClient.compute(parseDeviceInfoPageData, response.data!);
   }
 
-    Future<PageData<DeviceInfo>> getTenantGateways(PageLink pageLink,
+  Future<PageData<DeviceInfo>> getTenantGateways(PageLink pageLink,
       {String type = '',
       String deviceProfileId = '',
       bool gatewayOnly = true,
       RequestConfig? requestConfig}) async {
-    try{var queryParams = pageLink.toQueryParameters();
-    queryParams['type'] = type;
-    queryParams['deviceProfileId'] = deviceProfileId;
-    queryParams['gatewayOnly'] = gatewayOnly;
-    if (pageLink.textSearch != null) {
-    queryParams['textSearch'] = pageLink.textSearch;
-    }
-    var response = await _tbClient.get<Map<String, dynamic>>(
-        '/api/entity/tenant/deviceInfos',
-        queryParameters: queryParams,
-        options: defaultHttpOptionsFromConfig(requestConfig));
-        print("Query Parameters : $queryParams");
-        print("Response : ${response.data??response.statusCode}");
-    return _tbClient.compute(parseDeviceInfoPageData, response.data!);}catch(e){
+    try {
+      var queryParams = pageLink.toQueryParameters();
+      queryParams['type'] = type;
+      queryParams['deviceProfileId'] = deviceProfileId;
+      queryParams['gatewayOnly'] = gatewayOnly;
+      if (pageLink.textSearch != null) {
+        queryParams['textSearch'] = pageLink.textSearch;
+      }
+      var response = await _tbClient.get<Map<String, dynamic>>(
+          '/api/entity/tenant/deviceInfos',
+          queryParameters: queryParams,
+          options: defaultHttpOptionsFromConfig(requestConfig));
+      print("Query Parameters : $queryParams");
+      print("Response : ${response.data ?? response.statusCode}");
+      return _tbClient.compute(parseDeviceInfoPageData, response.data!);
+    } catch (e) {
       rethrow;
     }
   }

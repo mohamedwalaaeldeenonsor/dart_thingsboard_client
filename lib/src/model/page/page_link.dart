@@ -6,11 +6,18 @@ class PageLink {
   int page;
   SortOrder? sortOrder;
   String? deviceProfileId;
+  bool? active;
 
-  PageLink(this.pageSize, [this.page = 0, this.textSearch, this.sortOrder, this.deviceProfileId]);
+  PageLink(this.pageSize,
+      [this.page = 0,
+      this.textSearch,
+      this.sortOrder,
+      this.deviceProfileId,
+      this.active]);
 
   PageLink nextPageLink() {
-    return PageLink(pageSize, page + 1, textSearch, sortOrder);
+    return PageLink(
+        pageSize, page + 1, textSearch, sortOrder, deviceProfileId, active);
   }
 
   Map<String, dynamic> toQueryParameters() {
@@ -20,6 +27,9 @@ class PageLink {
     }
     if (deviceProfileId != null) {
       queryParameters['deviceProfileId'] = deviceProfileId!;
+    }
+    if (active != null) {
+      queryParameters['active'] = active!;
     }
     if (sortOrder != null) {
       queryParameters['sortProperty'] = sortOrder!.property;
