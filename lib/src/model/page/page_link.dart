@@ -5,8 +5,9 @@ class PageLink {
   int pageSize;
   int page;
   SortOrder? sortOrder;
+  String? deviceProfileId;
 
-  PageLink(this.pageSize, [this.page = 0, this.textSearch, this.sortOrder]);
+  PageLink(this.pageSize, [this.page = 0, this.textSearch, this.sortOrder, this.deviceProfileId]);
 
   PageLink nextPageLink() {
     return PageLink(pageSize, page + 1, textSearch, sortOrder);
@@ -16,6 +17,9 @@ class PageLink {
     var queryParameters = <String, dynamic>{'pageSize': pageSize, 'page': page};
     if (textSearch != null && textSearch!.isNotEmpty) {
       queryParameters['textSearch'] = textSearch!;
+    }
+    if (deviceProfileId != null) {
+      queryParameters['deviceProfileId'] = deviceProfileId!;
     }
     if (sortOrder != null) {
       queryParameters['sortProperty'] = sortOrder!.property;
