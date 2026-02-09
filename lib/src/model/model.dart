@@ -7,6 +7,8 @@ export 'base_data.dart';
 export 'component_descriptor_models.dart';
 export 'constants.dart';
 export 'contact_based_model.dart';
+export 'demo/demo_request_paylaod.dart';
+export 'demo/demo_request_response.dart';
 export 'customer_models.dart';
 export 'dashboard_models.dart';
 export 'device_models.dart';
