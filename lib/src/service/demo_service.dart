@@ -19,6 +19,11 @@ class DemoService {
         data: jsonEncode(demoRequestPayload),
         queryParameters: {'accessToken': accessToken},
         options: defaultHttpOptionsFromConfig(requestConfig));
+
+    if (response.statusCode != 200) {
+      print(response.data);
+      throw Exception('Failed to request demo: ${response.statusCode}');
+    }
     return DemoRequestResponse.fromJson(response.data!);
   }
 }
