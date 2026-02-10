@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:thingsboard_client/src/model/demo/demo_request_paylaod.dart';
+import 'package:thingsboard_client/src/model/demo/demo_request_payload.dart';
 import 'package:thingsboard_client/thingsboard_client.dart';
 
 class DemoService {
@@ -17,7 +17,6 @@ class DemoService {
     var response = await _tbClient.post<Map<String, dynamic>>(
         '/api/demo/request',
         data: jsonEncode(demoRequestPayload),
-        queryParameters: {'accessToken': accessToken},
         options: defaultHttpOptionsFromConfig(requestConfig));
 
     if (response.statusCode != 200) {

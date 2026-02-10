@@ -6,6 +6,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:thingsboard_client/src/service/demo_service.dart';
 import 'package:thingsboard_client/src/service/mobile_service.dart';
+import 'package:thingsboard_client/src/service/noauth_service.dart';
 
 import 'error/thingsboard_error.dart';
 import 'http/http_utils.dart';
@@ -73,6 +74,7 @@ class ThingsboardClient {
   NotificationsService? _notificationService;
   MobileService? _mobileService;
   DemoService? _demoService;
+  NoAuthService? _noAuthService;
 
   factory ThingsboardClient(
     String apiEndpoint, {
@@ -656,5 +658,10 @@ class ThingsboardClient {
   DemoService getDemoService() {
     _demoService ??= DemoService(this);
     return _demoService!;
+  }
+
+  NoAuthService getNoAuthService() {
+    _noAuthService ??= NoAuthService(this);
+    return _noAuthService!;
   }
 }
