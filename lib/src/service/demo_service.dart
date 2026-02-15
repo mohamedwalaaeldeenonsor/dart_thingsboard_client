@@ -15,7 +15,7 @@ class DemoService {
   Future<DemoRequestResponse> requestDemo(DemoRequestPayload demoRequestPayload,
       {String? accessToken, RequestConfig? requestConfig}) async {
     var response = await _tbClient.post<Map<String, dynamic>>(
-        '/api/demo/request',
+        '/api/noauth/demo/request',
         data: jsonEncode(demoRequestPayload),
         options: defaultHttpOptionsFromConfig(requestConfig));
 
