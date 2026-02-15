@@ -36,8 +36,8 @@ class DemoService {
       throw Exception('Failed to request demo: ${response.statusCode}');
     }
     log(response.data.toString());
-    return (response.data as List)
-        .map((useCase) => DemoUseCase.fromJson(useCase as Map<String, dynamic>))
+    return (response.data as List<Map<String, dynamic>>)
+        .map((useCase) => DemoUseCase.fromJson(useCase))
         .toList();
   }
 }
