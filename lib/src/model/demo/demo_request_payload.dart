@@ -33,7 +33,7 @@ class DemoRequestPayload {
       'email': email,
       'companyName': companyName,
       'message': message,
-      'useCase': useCase,
+      'useCaseId': useCase,
     };
   }
 }
