@@ -37,7 +37,7 @@ class DemoService {
     }
     log(response.data.toString());
     return (response.data as List)
-        .map((useCase) => DemoUseCase.fromJson(useCase))
+        .map((useCase) => DemoUseCase.fromJson(useCase as Map<String, dynamic>))
         .toList();
   }
 }
