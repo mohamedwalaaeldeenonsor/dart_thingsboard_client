@@ -26,7 +26,7 @@ class DemoService {
     return DemoRequestResponse.fromJson(response.data!);
   }
 
-  Future<List<UseCase>> getUseCases() async {
+  Future<List<DemoUseCase>> getUseCases() async {
     var response = await _tbClient.get<Map<String, dynamic>>(
       '/api/noauth/demo/usecases',
     );
@@ -37,7 +37,7 @@ class DemoService {
     }
     log(response.data.toString());
     return (response.data as List)
-        .map((useCase) => UseCase.fromJson(useCase))
+        .map((useCase) => DemoUseCase.fromJson(useCase))
         .toList();
   }
 }
