@@ -27,7 +27,7 @@ class DemoService {
   }
 
   Future<List<DemoUseCase>> getUseCases() async {
-    var response = await _tbClient.get<Map<String, dynamic>>(
+    var response = await _tbClient.get<List<Map<String, dynamic>>>(
       '/api/noauth/demo/usecases',
     );
 
