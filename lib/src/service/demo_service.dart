@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
 
-import 'package:thingsboard_client/src/model/demo/demo_request_payload.dart';
 import 'package:thingsboard_client/thingsboard_client.dart';
 
 class DemoService {
@@ -24,5 +24,20 @@ class DemoService {
       throw Exception('Failed to request demo: ${response.statusCode}');
     }
     return DemoRequestResponse.fromJson(response.data!);
+  }
+
+  Future<List<UseCase>> getUseCases() async {
+    var response = await _tbClient.get<Map<String, dynamic>>(
+      '/api/noauth/demo/usecases',
+    );
+
+    if (response.statusCode != 200) {
+      print(response.data);
+      throw Exception('Failed to request demo: ${response.statusCode}');
+    }
+    log(response.data.toString());
+    return (response.data as List)
+        .map((useCase) => UseCase.fromJson(useCase))
+        .toList();
   }
 }
