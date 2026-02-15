@@ -27,7 +27,7 @@ class DemoService {
   }
 
   Future<List<DemoUseCase>> getUseCases() async {
-    var response = await _tbClient.get<List<Map<String, dynamic>>>(
+    var response = await _tbClient.get<List>(
       '/api/noauth/demo/usecases',
     );
 
@@ -36,7 +36,7 @@ class DemoService {
       throw Exception('Failed to request demo: ${response.statusCode}');
     }
     log(response.data.toString());
-    return (response.data as List<Map<String, dynamic>>)
+    return (response.data as List)
         .map((useCase) => DemoUseCase.fromJson(useCase))
         .toList();
   }
