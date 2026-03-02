@@ -29,6 +29,8 @@ class EntityQueryService {
     var response = await _tbClient.post<int>('/api/entitiesQuery/count',
         data: jsonEncode(query),
         options: defaultHttpOptionsFromConfig(requestConfig));
+    log("Count Entities By Query Request: ${jsonEncode(query)}",
+        name: 'EntityQueryService.countEntitiesByQuery');
     log('Count Entities By Query Response: ${response.data}',
         name: 'EntityQueryService.countEntitiesByQuery');
     return response.data!;
