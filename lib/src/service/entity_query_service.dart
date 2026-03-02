@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import '../http/http_utils.dart';
 import '../model/page/page_data.dart';
@@ -28,6 +29,8 @@ class EntityQueryService {
     var response = await _tbClient.post<int>('/api/entitiesQuery/count',
         data: jsonEncode(query),
         options: defaultHttpOptionsFromConfig(requestConfig));
+    log('Count Entities By Query Response: ${response.data}',
+        name: 'EntityQueryService.countEntitiesByQuery');
     return response.data!;
   }
 
